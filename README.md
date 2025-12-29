@@ -1,0 +1,56 @@
+# RS Property Estimation App
+
+A standalone production-ready web application that collects estimate requests and automates address normalization, enrichment, pricing, Google Doc generation, and GoHighLevel updates.
+
+## Features
+- Mobile-responsive estimate intake form
+- Async backend processing for normalization, enrichment, pricing, Google Doc creation, and GHL integration
+- Always continues processing with explicit error flags
+
+## Setup
+
+### 1) Install dependencies
+
+```
+npm install
+```
+
+### 2) Configure environment variables
+
+Create a `.env` file based on `.env.example`.
+
+| Variable | Description |
+| --- | --- |
+| `PORT` | Port for the Express server (default: 3000) |
+| `OPENAI_API_KEY` | OpenAI API key for address normalization |
+| `OPENAI_MODEL` | OpenAI model name (default: `gpt-4o-mini`) |
+| `RENTCAST_API_KEY` | RentCast API key |
+| `RENTCAST_ENDPOINT` | RentCast endpoint URL for enrichment |
+| `LUSHA_API_KEY` | Lusha API key |
+| `LUSHA_ENDPOINT` | Lusha endpoint URL for enrichment |
+| `GOOGLE_SERVICE_ACCOUNT_JSON` | Service account JSON string for Google Docs + Drive |
+| `GOOGLE_DOCS_FOLDER_ID` | Google Drive folder ID for estimate docs |
+| `GHL_API_KEY` | GoHighLevel API key |
+| `GHL_API_BASE` | GoHighLevel base URL (default: `https://services.leadconnectorhq.com`) |
+| `GHL_LOCATION_ID` | GoHighLevel location ID (default: `nPLGDpS1HjcAtlJurRFr`) |
+| `GHL_USER_ID` | GHL user ID to attribute contact notes |
+
+### 3) Start the app
+
+```
+npm start
+```
+
+Visit `http://localhost:3000` to view the form.
+
+## Backend flow
+1. Normalize the address via OpenAI.
+2. Enrich residential properties with RentCast or commercial properties with Lusha.
+3. Calculate pricing based on services and sqft.
+4. Generate a Google Doc and store the URL.
+5. Upsert the contact in GoHighLevel and attach the estimate doc.
+6. Create a draft estimate in GoHighLevel (or fallback opportunity + task).
+
+## Notes
+- The system never blocks submission; it flags issues and continues processing.
+- No long-term storage is used beyond Google Docs and GHL records.
