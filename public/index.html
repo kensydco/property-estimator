@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RS Property Estimation App</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <header>
+          <p class="eyebrow">RS Property Estimation App</p>
+          <h1>Request a Property Estimate</h1>
+          <p>
+            Submit the form below and we will begin preparing your estimate.
+          </p>
+        </header>
+
+        <form id="estimate-form">
+          <div class="field">
+            <label for="property_address">Property address *</label>
+            <input
+              id="property_address"
+              name="property_address"
+              type="text"
+              placeholder="123 Main St, City, ST 12345"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <span class="label">Property type *</span>
+            <div class="radio-group">
+              <label><input type="radio" name="property_type" value="Residential" required />Residential</label>
+              <label><input type="radio" name="property_type" value="Commercial" required />Commercial</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="label">Services requested *</span>
+            <div class="checkbox-grid">
+              <label><input type="checkbox" name="services_requested" value="House Washing" />House Washing</label>
+              <label><input type="checkbox" name="services_requested" value="Driveway Cleaning" />Driveway Cleaning</label>
+              <label><input type="checkbox" name="services_requested" value="Sidewalk Cleaning" />Sidewalk Cleaning</label>
+              <label><input type="checkbox" name="services_requested" value="Deck Cleaning" />Deck Cleaning</label>
+              <label><input type="checkbox" name="services_requested" value="Fence Cleaning" />Fence Cleaning</label>
+              <label><input type="checkbox" name="services_requested" value="Patio Cleaning" />Patio Cleaning</label>
+              <label><input type="checkbox" name="services_requested" value="Roof Cleaning" />Roof Cleaning</label>
+              <label><input type="checkbox" name="services_requested" value="Gutter Cleaning" />Gutter Cleaning</label>
+              <label><input type="checkbox" name="services_requested" value="Window Cleaning" />Window Cleaning</label>
+              <label><input type="checkbox" name="services_requested" value="Commercial Building Wash" />Commercial Building Wash</label>
+              <label><input type="checkbox" name="services_requested" value="Fleet Washing" />Fleet Washing</label>
+              <label><input type="checkbox" name="services_requested" value="Post-Construction Cleanup" />Post-Construction Cleanup</label>
+            </div>
+            <p class="helper">Select all that apply.</p>
+          </div>
+
+          <div class="grid">
+            <div class="field">
+              <label for="first_name">First name *</label>
+              <input id="first_name" name="first_name" type="text" required />
+            </div>
+            <div class="field">
+              <label for="last_name">Last name *</label>
+              <input id="last_name" name="last_name" type="text" required />
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="field">
+              <label for="estimated_sqft">Estimated square footage</label>
+              <input id="estimated_sqft" name="estimated_sqft" type="number" min="0" />
+            </div>
+            <div class="field">
+              <label for="building_type">Building type</label>
+              <input id="building_type" name="building_type" type="text" />
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" />
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="company_name">Company name (commercial only)</label>
+            <input id="company_name" name="company_name" type="text" />
+          </div>
+
+          <div class="field">
+            <label for="special_conditions">Special conditions</label>
+            <textarea id="special_conditions" name="special_conditions" rows="3"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="access_notes">Access notes</label>
+            <textarea id="access_notes" name="access_notes" rows="3"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="timing_preference">Timing preference</label>
+            <select id="timing_preference" name="timing_preference">
+              <option value="">Select timing</option>
+              <option value="ASAP">ASAP</option>
+              <option value="Within 2 weeks">Within 2 weeks</option>
+              <option value="Within 30 days">Within 30 days</option>
+              <option value="Flexible">Flexible</option>
+            </select>
+          </div>
+
+          <input type="hidden" name="submission_timestamp" id="submission_timestamp" />
+          <input type="hidden" name="source" value="web_form" />
+          <input type="hidden" name="app_version" id="app_version" value="1.0.0" />
+
+          <button type="submit" class="primary">Submit estimate request</button>
+          <p class="form-status" id="form-status" role="status"></p>
+        </form>
+
+        <div id="confirmation" class="confirmation hidden">
+          <h2>Thanks. Your estimate is being prepared.</h2>
+          <p>We will follow up as soon as the draft is ready.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
